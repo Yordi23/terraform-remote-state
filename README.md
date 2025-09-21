@@ -43,7 +43,6 @@ Your AWS profile needs the following permissions:
 | -------------------- | ------------------------------------------ | ---------------- | -------- |
 | `AWS_REGION`         | AWS region for resources                   | `us-east-1`      | No       |
 | `AWS_PROFILE`        | AWS CLI profile name                       | `terraform-test` | No       |
-| `ENVIRONMENT`        | Environment (dev/staging/prod)             | `dev`            | No       |
 | `PROJECT_NAME`       | Project name for tagging                   | -                | **Yes**  |
 | `PROJECT_NAME_LOWER` | Lowercase project name for resource naming | -                | **Yes**  |
 
@@ -54,7 +53,6 @@ Create a `terraform.tfvars` file:
 ```hcl
 AWS_REGION = "us-east-1"
 AWS_PROFILE = "your-aws-profile"
-ENVIRONMENT = "dev"
 PROJECT_NAME = "YourProject"
 PROJECT_NAME_LOWER = "yourproject"
 ```
@@ -122,13 +120,13 @@ terraform {
 
 The project uses the following naming conventions:
 
-- **S3 Bucket**: `{PROJECT_NAME_LOWER}-terraform-state-bucket-{ENVIRONMENT}`
-- **DynamoDB Table**: `{PROJECT_NAME_LOWER}-terraform-lock-{ENVIRONMENT}`
+- **S3 Bucket**: `{PROJECT_NAME_LOWER}-terraform-state-bucket`
+- **DynamoDB Table**: `{PROJECT_NAME_LOWER}-terraform-lock`
 
 Example:
 
-- S3 Bucket: `myproject-terraform-state-bucket-dev`
-- DynamoDB Table: `myproject-terraform-lock-dev`
+- S3 Bucket: `myproject-terraform-state-bucket`
+- DynamoDB Table: `myproject-terraform-lock`
 
 ## Cleanup
 

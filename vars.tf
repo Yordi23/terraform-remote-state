@@ -8,11 +8,6 @@ variable "AWS_PROFILE" {
   default = "terraform-test"
 }
 
-variable "ENVIRONMENT" {
-  type    = string
-  default = "dev"
-}
-
 variable "PROJECT_NAME" {
   type = string
 }

@@ -2,15 +2,14 @@
 data "aws_caller_identity" "current" {}
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "${var.PROJECT_NAME_LOWER}-terraform-state-bucket-${var.ENVIRONMENT}"
+  bucket = "${var.PROJECT_NAME_LOWER}-terraform-state-bucket"
 
   lifecycle {
     prevent_destroy = true
   }
 
   tags = {
-    Name        = "Terraform State Bucket for ${var.PROJECT_NAME} project"
-    Environment = var.ENVIRONMENT
+    Name = "Terraform State Bucket for ${var.PROJECT_NAME} project"
   }
 }
 
@@ -33,7 +32,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_state_b
 }
 
 resource "aws_dynamodb_table" "terraform_locks" {
-  name         = "${var.PROJECT_NAME_LOWER}-terraform-lock-${var.ENVIRONMENT}"
+  name         = "${var.PROJECT_NAME_LOWER}-terraform-lock"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
 
